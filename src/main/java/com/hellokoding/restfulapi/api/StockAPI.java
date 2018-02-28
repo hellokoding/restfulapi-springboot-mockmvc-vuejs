@@ -1,24 +1,16 @@
 package com.hellokoding.restfulapi.api;
 
-import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.hellokoding.restfulapi.model.Stock;
 import com.hellokoding.restfulapi.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 
 @RestController
@@ -38,10 +30,6 @@ public class StockAPI {
 
     @PostMapping("/api/v1/stocks")
     public ResponseEntity createANewStock(@Valid @RequestBody Stock stock) {
-//        if (bindingResult.hasErrors()) {
-//            return ResponseEntity.badRequest().body(bindingResult.getFieldErrors().stream().collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)));
-//        }
-
         return ResponseEntity.ok(stockService.saveStock(stock));
     }
 
